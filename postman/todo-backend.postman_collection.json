@@ -1,0 +1,292 @@
+{
+  "info": {
+    "name": "todo-backend",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    { "key": "baseUrl", "value": "http://localhost:5000" },
+    { "key": "accessToken", "value": "" },
+    { "key": "refreshToken", "value": "" }
+  ],
+  "item": [
+    {
+      "name": "Health",
+      "item": [
+        {
+          "name": "GET /api/health",
+          "request": {
+            "method": "GET",
+            "url": { "raw": "{{baseUrl}}/api/health", "host": ["{{baseUrl}}"], "path": ["api", "health"] }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Auth",
+      "item": [
+        {
+          "name": "POST /api/auth/register",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"username\": \"testuser\",\n  \"email\": \"test@example.com\",\n  \"password\": \"123456\"\n}"
+            },
+            "url": { "raw": "{{baseUrl}}/api/auth/register", "host": ["{{baseUrl}}"], "path": ["api", "auth", "register"] }
+          }
+        },
+        {
+          "name": "POST /api/auth/login",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"test@example.com\",\n  \"password\": \"123456\"\n}"
+            },
+            "url": { "raw": "{{baseUrl}}/api/auth/login", "host": ["{{baseUrl}}"], "path": ["api", "auth", "login"] }
+          }
+        },
+        {
+          "name": "GET /api/auth/me",
+          "request": {
+            "method": "GET",
+            "header": [{ "key": "Authorization", "value": "Bearer {{accessToken}}" }],
+            "url": { "raw": "{{baseUrl}}/api/auth/me", "host": ["{{baseUrl}}"], "path": ["api", "auth", "me"] }
+          }
+        },
+        {
+          "name": "PUT /api/auth/update",
+          "request": {
+            "method": "PUT",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" },
+              { "key": "Authorization", "value": "Bearer {{accessToken}}" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"avatar\": \"https://example.com/avatar.png\",\n  \"settings\": {\n    \"theme\": \"dark\"\n  }\n}"
+            },
+            "url": { "raw": "{{baseUrl}}/api/auth/update", "host": ["{{baseUrl}}"], "path": ["api", "auth", "update"] }
+          }
+        },
+        {
+          "name": "POST /api/auth/refresh",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"refreshToken\": \"{{refreshToken}}\"\n}"
+            },
+            "url": { "raw": "{{baseUrl}}/api/auth/refresh", "host": ["{{baseUrl}}"], "path": ["api", "auth", "refresh"] }
+          }
+        },
+        {
+          "name": "POST /api/auth/logout",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"refreshToken\": \"{{refreshToken}}\"\n}"
+            },
+            "url": { "raw": "{{baseUrl}}/api/auth/logout", "host": ["{{baseUrl}}"], "path": ["api", "auth", "logout"] }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Tasks",
+      "item": [
+        {
+          "name": "POST /api/tasks",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" },
+              { "key": "Authorization", "value": "Bearer {{accessToken}}" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"title\": \"تسليم المشروع\",\n  \"priority\": \"urgent\",\n  \"status\": \"pending\",\n  \"dueDate\": \"2026-12-31T23:59:59.000Z\",\n  \"tags\": [\"work\"]\n}"
+            },
+            "url": { "raw": "{{baseUrl}}/api/tasks", "host": ["{{baseUrl}}"], "path": ["api", "tasks"] }
+          }
+        },
+        {
+          "name": "GET /api/tasks (filter)",
+          "request": {
+            "method": "GET",
+            "header": [{ "key": "Authorization", "value": "Bearer {{accessToken}}" }],
+            "url": {
+              "raw": "{{baseUrl}}/api/tasks?status=pending&priority=urgent&sortBy=createdAt&sortOrder=desc&page=1&limit=20",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "tasks"],
+              "query": [
+                { "key": "status", "value": "pending" },
+                { "key": "priority", "value": "urgent" },
+                { "key": "sortBy", "value": "createdAt" },
+                { "key": "sortOrder", "value": "desc" },
+                { "key": "page", "value": "1" },
+                { "key": "limit", "value": "20" }
+              ]
+            }
+          }
+        },
+        {
+          "name": "GET /api/tasks/:id",
+          "request": {
+            "method": "GET",
+            "header": [{ "key": "Authorization", "value": "Bearer {{accessToken}}" }],
+            "url": { "raw": "{{baseUrl}}/api/tasks/:id", "host": ["{{baseUrl}}"], "path": ["api", "tasks", ":id"] }
+          }
+        },
+        {
+          "name": "PUT /api/tasks/:id",
+          "request": {
+            "method": "PUT",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" },
+              { "key": "Authorization", "value": "Bearer {{accessToken}}" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"status\": \"in-progress\",\n  \"tags\": [\"work\", \"backend\"]\n}"
+            },
+            "url": { "raw": "{{baseUrl}}/api/tasks/:id", "host": ["{{baseUrl}}"], "path": ["api", "tasks", ":id"] }
+          }
+        },
+        {
+          "name": "PUT /api/tasks/:id/toggle",
+          "request": {
+            "method": "PUT",
+            "header": [{ "key": "Authorization", "value": "Bearer {{accessToken}}" }],
+            "url": { "raw": "{{baseUrl}}/api/tasks/:id/toggle", "host": ["{{baseUrl}}"], "path": ["api", "tasks", ":id", "toggle"] }
+          }
+        },
+        {
+          "name": "DELETE /api/tasks/:id",
+          "request": {
+            "method": "DELETE",
+            "header": [{ "key": "Authorization", "value": "Bearer {{accessToken}}" }],
+            "url": { "raw": "{{baseUrl}}/api/tasks/:id", "host": ["{{baseUrl}}"], "path": ["api", "tasks", ":id"] }
+          }
+        },
+        {
+          "name": "GET /api/tasks/stats",
+          "request": {
+            "method": "GET",
+            "header": [{ "key": "Authorization", "value": "Bearer {{accessToken}}" }],
+            "url": { "raw": "{{baseUrl}}/api/tasks/stats", "host": ["{{baseUrl}}"], "path": ["api", "tasks", "stats"] }
+          }
+        },
+        {
+          "name": "POST /api/tasks/sync",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" },
+              { "key": "Authorization", "value": "Bearer {{accessToken}}" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"lastSyncAt\": null,\n  \"tasks\": []\n}"
+            },
+            "url": { "raw": "{{baseUrl}}/api/tasks/sync", "host": ["{{baseUrl}}"], "path": ["api", "tasks", "sync"] }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Lists",
+      "item": [
+        {
+          "name": "GET /api/lists/public",
+          "request": {
+            "method": "GET",
+            "url": { "raw": "{{baseUrl}}/api/lists/public", "host": ["{{baseUrl}}"], "path": ["api", "lists", "public"] }
+          }
+        },
+        {
+          "name": "POST /api/lists",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" },
+              { "key": "Authorization", "value": "Bearer {{accessToken}}" }
+            ],
+            "body": { "mode": "raw", "raw": "{\n  \"name\": \"Team List\",\n  \"isPublic\": false\n}" },
+            "url": { "raw": "{{baseUrl}}/api/lists", "host": ["{{baseUrl}}"], "path": ["api", "lists"] }
+          }
+        },
+        {
+          "name": "GET /api/lists",
+          "request": {
+            "method": "GET",
+            "header": [{ "key": "Authorization", "value": "Bearer {{accessToken}}" }],
+            "url": { "raw": "{{baseUrl}}/api/lists", "host": ["{{baseUrl}}"], "path": ["api", "lists"] }
+          }
+        },
+        {
+          "name": "GET /api/lists/:id",
+          "request": {
+            "method": "GET",
+            "header": [{ "key": "Authorization", "value": "Bearer {{accessToken}}" }],
+            "url": { "raw": "{{baseUrl}}/api/lists/:id", "host": ["{{baseUrl}}"], "path": ["api", "lists", ":id"] }
+          }
+        },
+        {
+          "name": "POST /api/lists/:id/invite",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" },
+              { "key": "Authorization", "value": "Bearer {{accessToken}}" }
+            ],
+            "body": { "mode": "raw", "raw": "{\n  \"userIdentifier\": \"test@example.com\",\n  \"role\": \"viewer\"\n}" },
+            "url": { "raw": "{{baseUrl}}/api/lists/:id/invite", "host": ["{{baseUrl}}"], "path": ["api", "lists", ":id", "invite"] }
+          }
+        },
+        {
+          "name": "POST /api/lists/join/:code",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" },
+              { "key": "Authorization", "value": "Bearer {{accessToken}}" }
+            ],
+            "body": { "mode": "raw", "raw": "{}" },
+            "url": { "raw": "{{baseUrl}}/api/lists/join/:code", "host": ["{{baseUrl}}"], "path": ["api", "lists", "join", ":code"] }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Achievements",
+      "item": [
+        {
+          "name": "GET /api/achievements",
+          "request": {
+            "method": "GET",
+            "header": [{ "key": "Authorization", "value": "Bearer {{accessToken}}" }],
+            "url": { "raw": "{{baseUrl}}/api/achievements", "host": ["{{baseUrl}}"], "path": ["api", "achievements"] }
+          }
+        },
+        {
+          "name": "POST /api/achievements/check",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" },
+              { "key": "Authorization", "value": "Bearer {{accessToken}}" }
+            ],
+            "body": { "mode": "raw", "raw": "{}" },
+            "url": { "raw": "{{baseUrl}}/api/achievements/check", "host": ["{{baseUrl}}"], "path": ["api", "achievements", "check"] }
+          }
+        }
+      ]
+    }
+  ]
+}
