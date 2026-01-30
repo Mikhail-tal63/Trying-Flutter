@@ -6,7 +6,9 @@ function validate(schema, property = 'body') {
     });
 
     if (error) {
-      const err = new Error(error.details.map((d) => d.message).join(', '));
+      const errorMessage = error.details.map((d) => d.message).join(', ');
+      console.error('[Validation] Error:', errorMessage, 'Body:', req.body);
+      const err = new Error(errorMessage);
       err.statusCode = 400;
       return next(err);
     }
