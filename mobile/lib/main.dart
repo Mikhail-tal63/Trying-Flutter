@@ -56,7 +56,7 @@ class MyApp extends StatelessWidget {
                   ),
                 );
               }
-              // AuthInitial, AuthUnauthenticated, AuthError
+            
               return const LoginPage();
             },
           ),

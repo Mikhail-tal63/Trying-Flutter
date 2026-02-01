@@ -17,30 +17,30 @@ class AuthRepository {
 
   Future<UserModel> login(String email, String password) async {
     try {
-      // 1. استدعاء API لتسجيل الدخول
+
       final AuthResponse response = await authApi.login(email, password);
       
-      // 2. حفظ البيانات محلياً
+
       await _saveAuthData(response);
       
-      // 3. إرجاع بيانات المستخدم
+
       return response.user;
     } catch (e) {
-      // 4. في حالة الخطأ، تنظيف البيانات المحلية (اختياري)
+
       await localStorage.clearAuthData();
-      rethrow; // إعادة رمي الخطأ للطبقة الأعلى
+      rethrow; 
     }
   }
 
   Future<UserModel> register(String name, String email, String password) async {
     try {
-      // 1. استدعاء API للتسجيل
+
       final AuthResponse response = await authApi.register(name, email, password);
       
-      // 2. حفظ البيانات محلياً
+
       await _saveAuthData(response);
       
-      // 3. إرجاع بيانات المستخدم
+
       return response.user;
     } catch (e) {
       await localStorage.clearAuthData();
@@ -50,15 +50,15 @@ class AuthRepository {
 
   Future<void> logout({String? refreshToken}) async {
     try {
-      // 1. إرسال طلب تسجيل خروج للسيرفر (إذا كان هناك refreshToken)
+
       if (refreshToken != null) {
         await authApi.logout(refreshToken);
       }
     } catch (e) {
-      // تجاهل أخطاء السيرفر، نظف البيانات المحلية على أي حال
+
       print('Logout API error: $e');
     } finally {
-      // 2. تنظيف البيانات المحلية دائماً
+
       await localStorage.clearAuthData();
     }
   }
@@ -87,17 +87,12 @@ class AuthRepository {
     return localStorage.isLoggedIn();
   }
 
-  // 🔄 دوال إضافية مهمة
 
   Future<bool> refreshToken() async {
     try {
       final refreshToken = localStorage.getRefreshToken();
       if (refreshToken == null) return false;
 
-      // هنا تحتاج لإضافة دالة refreshToken في AuthApi
-      // final newToken = await authApi.refreshToken(refreshToken);
-      // await localStorage.saveAccessToken(newToken);
-      
       return true;
     } catch (e) {
       await localStorage.clearAuthData();
@@ -111,14 +106,13 @@ class AuthRepository {
       throw Exception('No user logged in');
     }
     
-    // حفظ المستخدم المحدث
+
     await localStorage.saveUser(updatedUser);
     
-    // هنا يمكنك إضافة استدعاء API لتحديث بيانات المستخدم في السيرفر
-    // await authApi.updateProfile(updatedUser);
+
   }
 
-  // 🔒 دالة خاصة لحفظ بيانات التوثيق
+
   Future<void> _saveAuthData(AuthResponse response) async {
     await Future.wait([
       localStorage.saveAccessToken(response.accessToken),

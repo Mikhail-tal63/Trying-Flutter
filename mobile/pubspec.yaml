@@ -28,6 +28,9 @@ dependencies:
   hive_flutter: ^1.1.0
   sqflite: ^2.0.0
   
+         # للتخزين المحلي
+  
+  flutter_slidable: ^2.0.0 
   # Forms & Validation
   formz: ^0.5.0
   
@@ -56,4 +59,4 @@ dev_dependencies:
     sdk: flutter
   flutter_lints: ^3.0.2
   build_runner: ^2.0.0
-  retrofit_generator: ^5.0.0
+  retrofit_generator: ^5.0

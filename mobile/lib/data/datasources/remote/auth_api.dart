@@ -62,7 +62,7 @@ if (response.statusCode == 200) {
         throw Exception(data['message'] ?? 'Signing up failed');
       }
     } else {
-       // المحاولة في استخراج رسالة الخطأ من السيرفر
+
        try {
          final data = jsonDecode(response.body);
          throw Exception(data['message'] ?? '${response.statusCode}');

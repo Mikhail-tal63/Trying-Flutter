@@ -1,4 +1,4 @@
-// 📁 presentation/auth/bloc/auth/auth_event.dart
+
 
 import 'package:equatable/equatable.dart';
 
@@ -38,9 +38,9 @@ class LogoutEvent extends AuthEvent {}
 
 class CheckAuthEvent extends AuthEvent {}
 
-class RefreshTokenEvent extends AuthEvent {}  // 🔄 جديد
+class RefreshTokenEvent extends AuthEvent {} 
 
-class UpdateUserEvent extends AuthEvent {    // 🔄 جديد
+class UpdateUserEvent extends AuthEvent {  
   final String? name;
   final String? avatarUrl;
 

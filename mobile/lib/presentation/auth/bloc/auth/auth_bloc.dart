@@ -11,7 +11,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
   final AuthRepository authRepository;
 
   AuthBloc({required this.authRepository}) : super(AuthInitial()) {
-    // معالجة الأحداث
+    
     on<LoginEvent>(_onLogin);
     on<RegisterEvent>(_onRegister);
     on<LogoutEvent>(_onLogout);
@@ -19,7 +19,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     on<RefreshTokenEvent>(_onRefreshToken);
   }
 
-  // 📌 1. تسجيل الدخول
+
   Future<void> _onLogin(
     LoginEvent event,
     Emitter<AuthState> emit,
@@ -27,16 +27,16 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     emit(AuthLoading());
     
     try {
-      // 1. محاولة تسجيل الدخول
+
       final user = await authRepository.login(event.email, event.password);
       
-      // 2. النجاح - الانتقال للحالة المصادقة
+
       emit(AuthAuthenticated(user: user));
       
       log('✅ Login successful for user: ${user.email}');
       
     } catch (e, stackTrace) {
-      // 3. الفشل - معالجة الخطأ
+
       log('❌ Login error: $e', error: e, stackTrace: stackTrace);
       
       final errorMessage = _getUserFriendlyErrorMessage(e);
@@ -44,7 +44,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     }
   }
 
-  // 📌 2. التسجيل
+
   Future<void> _onRegister(
     RegisterEvent event,
     Emitter<AuthState> emit,
@@ -70,14 +70,12 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     }
   }
 
-  // 📌 3. تسجيل الخروج
+
   Future<void> _onLogout(
     LogoutEvent event,
     Emitter<AuthState> emit,
   ) async {
-    // لا نحتاج لـ AuthLoading هنا عادةً
-    // لأنه عملية سريعة ولا تؤثر على UI
-    
+ 
     try {
       final refreshToken = await authRepository.getRefreshToken();
       await authRepository.logout(refreshToken: refreshToken);
@@ -89,19 +87,17 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     } catch (e, stackTrace) {
       log('❌ Logout error: $e', error: e, stackTrace: stackTrace);
       
-      // حتى لو فشل Logout API، نظف البيانات المحلية
+
       await authRepository.logout(refreshToken: null);
       emit(AuthUnauthenticated());
     }
   }
 
-  // 📌 4. التحقق من حالة المصادقة
   Future<void> _onCheckAuth(
     CheckAuthEvent event,
     Emitter<AuthState> emit,
   ) async {
-    // لا نحتاج لـ AuthLoading هنا لأنه عملية محلية سريعة
-    
+ 
     try {
       if (authRepository.isLoggedIn()) {
         final user = await authRepository.getCurrentUser();
@@ -122,7 +118,6 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     }
   }
 
-  // 📌 5. تجديد التوكن (جديد)
   Future<void> _onRefreshToken(
     RefreshTokenEvent event,
     Emitter<AuthState> emit,
@@ -135,7 +130,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
       if (success) {
         log('✅ Token refreshed successfully');
         
-        // الحصول على المستخدم الحالي بعد التجديد
+
         final user = await authRepository.getCurrentUser();
         if (user != null) {
           emit(AuthAuthenticated(user: user));
@@ -150,7 +145,6 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     }
   }
 
-  // 🔧 دالة مساعدة لتحويل أخطاء API لرسائل ودية
   String _getUserFriendlyErrorMessage(dynamic error) {
     final errorString = error.toString().toLowerCase();
     
@@ -173,7 +167,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     }
   }
   
-  // 🛡️ دالة لإغلاق الـ BLoC (اختياري)
+
   @override
   Future<void> close() {
     log('🔒 AuthBloc closed');
