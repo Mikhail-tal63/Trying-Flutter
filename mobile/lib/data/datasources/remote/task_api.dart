@@ -61,7 +61,7 @@ class TaskApi {
       throw Exception('Network error $e');
     }
   }
-  Future<TaskModel> updateTask(TaskModel task) async {
+  Future<TaskModel> updateTask(String taskId, TaskModel task) async {
     try {
       final Response = await client.put(
         Uri.parse('${ApiEndpoints.baseUrl}/tasks')
