@@ -44,7 +44,7 @@ class _SignupPageState extends State<SignupPage> {
     }
   }
 
-  // دالة للتحقق من تطابق كلمتي المرور
+
   String? _validatePasswordMatch(String? value) {
     if (value == null || value.isEmpty) {
       return 'يرجى تأكيد كلمة المرور';
@@ -97,7 +97,7 @@ class _SignupPageState extends State<SignupPage> {
                     children: [
                       const SizedBox(height: 30),
                       
-                      // أيقونة التطبيق
+                  
                       Center(
                         child: Icon(
                           Icons.task_alt,
@@ -108,7 +108,7 @@ class _SignupPageState extends State<SignupPage> {
                       
                       const SizedBox(height: 20),
                       
-                      // العنوان
+                 
                       const Text(
                         'إنشاء حساب',
                         style: TextStyle(
@@ -120,7 +120,7 @@ class _SignupPageState extends State<SignupPage> {
                       
                       const SizedBox(height: 10),
                       
-                      // وصف الصفحة
+       
                       const Text(
                         'أنشئ حسابك لبدء استخدام تطبيق ToDo',
                         style: TextStyle(
@@ -131,8 +131,7 @@ class _SignupPageState extends State<SignupPage> {
                       ),
                       
                       const SizedBox(height: 50),
-                      
-                      // حقل الاسم
+             
                       TextFormField(
                         controller: _nameController,
                         keyboardType: TextInputType.name,
@@ -158,7 +157,7 @@ class _SignupPageState extends State<SignupPage> {
                       
                       const SizedBox(height: 20),
                       
-                      // حقل البريد الإلكتروني
+          
                       TextFormField(
                         controller: _emailController,
                         keyboardType: TextInputType.emailAddress,
@@ -184,7 +183,7 @@ class _SignupPageState extends State<SignupPage> {
                       
                       const SizedBox(height: 20),
                       
-                      // حقل كلمة المرور
+        
                       TextFormField(
                         controller: _passwordController,
                         obscureText: _obscurePassword,
@@ -222,7 +221,7 @@ class _SignupPageState extends State<SignupPage> {
                       
                       const SizedBox(height: 20),
                       
-                      // حقل تأكيد كلمة المرور
+            
                       TextFormField(
                         controller: _confirmPasswordController,
                         obscureText: _obscureConfirmPassword,
@@ -252,7 +251,7 @@ class _SignupPageState extends State<SignupPage> {
                       
                       const SizedBox(height: 10),
                       
-                      // تلميح قوة كلمة المرور
+            
                       Row(
                         children: [
                           Icon(
@@ -275,7 +274,7 @@ class _SignupPageState extends State<SignupPage> {
                       
                       const SizedBox(height: 40),
                       
-                      // زر إنشاء الحساب
+
                       SizedBox(
                         height: 56,
                         child: ElevatedButton(
@@ -306,7 +305,7 @@ class _SignupPageState extends State<SignupPage> {
                       
                       const SizedBox(height: 30),
                       
-                      // رابط تسجيل الدخول
+          
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
@@ -337,7 +336,7 @@ class _SignupPageState extends State<SignupPage> {
                       
                       const SizedBox(height: 20),
                       
-                      // أو باستخدام
+ 
                       Row(
                         children: const [
                           Expanded(
@@ -364,7 +363,7 @@ class _SignupPageState extends State<SignupPage> {
                       
                       const SizedBox(height: 20),
                       
-                      // أزرار التسجيل عبر وسائل التواصل (اختياري)
+
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children: [

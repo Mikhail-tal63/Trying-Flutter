@@ -5,6 +5,7 @@ import 'package:ToDo/presentation/auth/signup_page.dart';
 import 'package:ToDo/presentation/home/home_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
 
@@ -47,7 +48,7 @@ class _LoginPageState extends State<LoginPage> {
             ),
           );
         }
-        
+
         if (state is AuthAuthenticated) {
           Navigator.pushReplacement(
             context,
@@ -66,7 +67,6 @@ class _LoginPageState extends State<LoginPage> {
                   child: Column(
                     children: [
                       const SizedBox(height: 50),
-                      
                       const Icon(
                         Icons.task_alt,
                         size: 100,
@@ -82,16 +82,13 @@ class _LoginPageState extends State<LoginPage> {
                       ),
                       const SizedBox(height: 10),
                       const Text(
-                        
                         'Login to continue',
                         style: TextStyle(
                           fontSize: 16,
                           color: Colors.grey,
                         ),
                       ),
-                      
                       const SizedBox(height: 50),
-                      
                       TextFormField(
                         controller: _emailController,
                         keyboardType: TextInputType.emailAddress,
@@ -110,10 +107,7 @@ class _LoginPageState extends State<LoginPage> {
                           return null;
                         },
                       ),
-                      
                       const SizedBox(height: 20),
-                      
-          
                       TextFormField(
                         controller: _passwordController,
                         obscureText: true,
@@ -132,24 +126,19 @@ class _LoginPageState extends State<LoginPage> {
                           return null;
                         },
                       ),
-                      
                       const SizedBox(height: 30),
-
-
                       SizedBox(
                         width: double.infinity,
                         height: 50,
                         child: ElevatedButton(
                           onPressed: state is AuthLoading ? null : _login,
                           child: state is AuthLoading
-                              ? const CircularProgressIndicator(color: Colors.white)
+                              ? const CircularProgressIndicator(
+                                  color: Colors.white)
                               : const Text('تسجيل الدخول'),
                         ),
                       ),
-
                       const SizedBox(height: 20),
-
-
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [

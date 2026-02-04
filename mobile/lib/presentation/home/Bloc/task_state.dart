@@ -27,9 +27,23 @@ const TaskLoaded({
   this.currentFilter,
   this.searchQuery,
   required this.stats,
-  required this.isSyncing,
+  this.isSyncing = false,
 });
-
+  TaskLoaded copyWith({
+    List<TaskModel>? tasks,
+    String? currentFilter,
+    String? searchQuery,
+    Map<String, int>? stats,
+    bool? isSyncing,
+  }) {
+    return TaskLoaded(
+      tasks: tasks ?? this.tasks,
+      currentFilter: currentFilter ?? this.currentFilter,
+      searchQuery: searchQuery ?? this.searchQuery,
+      stats: stats ?? this.stats,
+      isSyncing: isSyncing ?? this.isSyncing,
+    );
+  }
 @override
   List<Object> get props => [tasks, currentFilter ?? '', searchQuery ?? '', stats, isSyncing];
 

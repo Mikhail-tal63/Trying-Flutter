@@ -1,8 +1,8 @@
 import 'dart:async';
 import 'package:ToDo/data/models/task_model.dart';
 import 'package:ToDo/data/repositories/task_repository.dart';
-import 'package:ToDo/presentation/home/Test/task_event.dart';
-import 'package:ToDo/presentation/home/Test/task_state.dart';
+import 'package:ToDo/presentation/home/Bloc/task_event.dart';
+import 'package:ToDo/presentation/home/Bloc/task_state.dart';
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 
@@ -45,7 +45,7 @@ class TaskBloc extends Bloc<TaskEvent, TaskState> {
         stats: stats,
       ));
     } catch (e) {
-      emit(TaskError(message: 'فشل تحميل المهام: $e'));
+      emit(TaskError(message: 'Failed to load tasks:$e'));
     }
   }
 
@@ -69,7 +69,7 @@ class TaskBloc extends Bloc<TaskEvent, TaskState> {
           stats: stats,
         ));
       } catch (e) {
-        emit(TaskError(message: 'فشل إضافة المهمة: $e'));
+        emit(TaskError(message: 'Faild to add task:$e'));
       }
     }
   }
@@ -97,7 +97,7 @@ class TaskBloc extends Bloc<TaskEvent, TaskState> {
           stats: stats,
         ));
       } catch (e) {
-        emit(TaskError(message: 'فشل تحديث المهمة: $e'));
+        emit(TaskError(message: 'Faild to update task:$e'));
       }
     }
   }
@@ -125,7 +125,7 @@ class TaskBloc extends Bloc<TaskEvent, TaskState> {
           stats: stats,
         ));
       } catch (e) {
-        emit(TaskError(message: 'فشل حذف المهمة: $e'));
+        emit(TaskError(message: 'Faild to delete task:$e'));
       }
     }
   }
@@ -138,7 +138,7 @@ class TaskBloc extends Bloc<TaskEvent, TaskState> {
       final currentState = state as TaskLoaded;
       final task = currentState.tasks.firstWhere(
         (t) => t.id == event.taskId,
-        orElse: () => throw Exception('المهمة غير موجودة'),
+        orElse: () => throw Exception('Task not found'),
       );
 
       final updatedTask = task.copyWith(
@@ -182,10 +182,10 @@ class TaskBloc extends Bloc<TaskEvent, TaskState> {
 
       emit(TaskSyncComplete(syncedCount: tasks.length));
       
-      // إعادة تحميل المهام بعد المزامنة
+
       add(LoadTasksEvent(forceRefresh: true));
     } catch (e) {
-      emit(TaskError(message: 'فشل المزامنة: $e'));
+      emit(TaskError(message: 'Sync failed$e'));
     }
   }
 
@@ -232,7 +232,7 @@ class TaskBloc extends Bloc<TaskEvent, TaskState> {
       final currentState = state as TaskLoaded;
       final task = currentState.tasks.firstWhere(
         (t) => t.id == event.taskId,
-        orElse: () => throw Exception('المهمة غير موجودة'),
+        orElse: () => throw Exception('Task not found'),
       );
 
       final updatedTask = task.copyWith(
@@ -251,7 +251,7 @@ class TaskBloc extends Bloc<TaskEvent, TaskState> {
   ) {
     List<TaskModel> filteredTasks = tasks;
 
-    // تطبيق فلترة الحالة
+    
     if (filter != null && filter.isNotEmpty) {
       switch (filter) {
         case 'pending':
@@ -286,7 +286,7 @@ class TaskBloc extends Bloc<TaskEvent, TaskState> {
       }
     }
 
-    // تطبيق البحث
+
     if (searchQuery != null && searchQuery.isNotEmpty) {
       final query = searchQuery.toLowerCase();
       filteredTasks = filteredTasks
