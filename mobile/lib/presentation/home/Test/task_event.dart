@@ -15,38 +15,44 @@ abstract class TaskEvent extends Equatable {
 class LoadTasksEvent extends TaskEvent {
   final bool forceRefresh;
 
-  const LoadTasksEvent({this.forceRefresh = false});
+const LoadTasksEvent({this.forceRefresh = false});
 
   @override
   List<Object> get props => [forceRefresh];
+
 }
 
 class AddTaskEvent extends TaskEvent {
-  final TaskModel task;
 
-  const AddTaskEvent({required this.task});
+final TaskModel task;
 
-  @override
+const AddTaskEvent({required this.task});
+
+@override
   List<Object> get props => [task];
+
 }
 
 class UpdateTaskEvent extends TaskEvent {
-  final TaskModel task;
+final TaskModel task;
 
-  const UpdateTaskEvent({required this.task});
+const UpdateTaskEvent({required this.task});
 
-  @override
+@override
   List<Object> get props => [task];
+
 }
 
 class DeleteTaskEvent extends TaskEvent {
-  final String taskId;
-  final String? serverId;
+final String taskId;
+final String? serverId;
 
-  const DeleteTaskEvent({required this.taskId, this.serverId});
+const DeleteTaskEvent({required this.taskId,required this.serverId});
 
-  @override
+@override
   List<Object> get props => [taskId, serverId ?? ''];
+
+
 }
 
 class ToggleTaskStatusEvent extends TaskEvent {
