@@ -99,10 +99,10 @@ class _LoginPageState extends State<LoginPage> {
                         ),
                         validator: (value) {
                           if (value == null || value.isEmpty) {
-                            return 'يرجى إدخال البريد الإلكتروني';
+                            return 'Please enter your email';
                           }
                           if (!value.contains('@')) {
-                            return 'البريد الإلكتروني غير صحيح';
+                            return 'Invalid email address';
                           }
                           return null;
                         },
@@ -112,16 +112,16 @@ class _LoginPageState extends State<LoginPage> {
                         controller: _passwordController,
                         obscureText: true,
                         decoration: const InputDecoration(
-                          labelText: 'كلمة المرور',
+                          labelText: 'Password',
                           prefixIcon: Icon(Icons.lock),
                           border: OutlineInputBorder(),
                         ),
                         validator: (value) {
                           if (value == null || value.isEmpty) {
-                            return 'يرجى إدخال كلمة المرور';
+                            return 'Please enter your password';
                           }
                           if (value.length < 6) {
-                            return 'كلمة المرور يجب أن تكون 6 أحرف على الأقل';
+                            return 'Password must be at least 6 characters';
                           }
                           return null;
                         },
@@ -135,14 +135,14 @@ class _LoginPageState extends State<LoginPage> {
                           child: state is AuthLoading
                               ? const CircularProgressIndicator(
                                   color: Colors.white)
-                              : const Text('تسجيل الدخول'),
+                              : const Text('Login'),
                         ),
                       ),
                       const SizedBox(height: 20),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          const Text('ليس لديك حساب؟'),
+                          const Text('Don\'t have an account?'),
                           TextButton(
                             onPressed: () {
                               Navigator.push(
@@ -152,7 +152,7 @@ class _LoginPageState extends State<LoginPage> {
                                 ),
                               );
                             },
-                            child: const Text('سجل الآن'),
+                            child: const Text('Register Now'),
                           ),
                         ],
                       ),

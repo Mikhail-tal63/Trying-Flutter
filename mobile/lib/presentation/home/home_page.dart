@@ -1,9 +1,14 @@
-import 'package:ToDo/data/models/task_model.dart';
 import 'package:ToDo/presentation/auth/bloc/auth/auth_bloc.dart';
 import 'package:ToDo/presentation/auth/bloc/auth/auth_state.dart';
 import 'package:ToDo/presentation/home/Bloc/task_bloc.dart';
 import 'package:ToDo/presentation/home/Bloc/task_event.dart';
 import 'package:ToDo/presentation/home/Bloc/task_state.dart';
+import 'package:ToDo/presentation/home/widgets/add_task_bottom_sheet.dart';
+import 'package:ToDo/presentation/home/widgets/filter_chips.dart';
+import 'package:ToDo/presentation/home/widgets/home_app_bar.dart';
+import 'package:ToDo/presentation/home/widgets/search_bar.dart';
+import 'package:ToDo/presentation/home/widgets/stats_summary.dart';
+import 'package:ToDo/presentation/home/widgets/task_card.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -20,16 +25,16 @@ class _HomePageState extends State<HomePage> {
 final ScrollController _scrollController = ScrollController();
 bool _isFabVisible = true;
 
-void initState{
+@override
+void initState() {
   super.initState();
-  _scrollController.addListener(_scrollController);
+  _scrollController.addListener(_onScroll);
   WidgetsBinding.instance.addPostFrameCallback((_) {
     context.read<TaskBloc>().add(LoadTasksEvent());
   });
 }
 
-@override
-void _scrollController(){
+void _onScroll(){
   if(_scrollController.position.userScrollDirection == ScrollDirection.reverse)
   {
     if(_isFabVisible){
@@ -44,7 +49,7 @@ void _scrollController(){
 
 @override
 void dispose(){
-  _scrollController.removeListener(_scrollController);
+  _scrollController.removeListener(_onScroll);
 _scrollController.dispose();
 super.dispose();
 }
@@ -70,7 +75,7 @@ super.dispose();
                   duration: const Duration(seconds: 3),
 ),
             );
-          }
+            }
         
         if (state is TaskSyncComplete){
           ScaffoldMessenger.of(context).showSnackBar(
@@ -83,7 +88,7 @@ super.dispose();
        )
       ],
       child: Scaffold(
-        appBar: const HomePage(),
+        appBar: const HomeAppBar(),
         body:BlocBuilder<TaskBloc,TaskState>(
           builder: (context,state){
           if(state is TaskLoading){
@@ -113,7 +118,7 @@ super.dispose();
                   onPressed: () {
                     context.read<TaskBloc>().add(LoadTasksEvent());
                   }, 
-                child: const Text("reload"))
+                child: const Text("Reload"))
               ],
               ),
             );
@@ -121,7 +126,7 @@ super.dispose();
           if(state is TaskLoaded){
 return Column(
   children: [
-    const HomeSearhcBar(),
+    const HomeSearchBar(),
     const FilterChips(),
 
 StatsSummary(stats:state.stats),

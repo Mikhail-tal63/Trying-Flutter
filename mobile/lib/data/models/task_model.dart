@@ -1,4 +1,3 @@
-import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:hive/hive.dart';
 
@@ -7,13 +6,13 @@ import 'package:hive/hive.dart';
 @HiveType(typeId: 1)
 enum TaskPriority {
   @HiveField(0)
-  low('low', 'منخفضة', Color(0xFF4CAF50)),
+  low('low', 'Low', Color(0xFF4CAF50)),
   
   @HiveField(1)
-  medium('medium', 'متوسطة', Color(0xFFFF9800)),
+  medium('medium', 'Medium', Color(0xFFFF9800)),
   
   @HiveField(2)
-  high('high', 'عالية', Color(0xFFF44336));
+  high('high', 'High', Color(0xFFF44336));
 
   final String value;
   final String label;
@@ -32,13 +31,13 @@ enum TaskPriority {
 @HiveType(typeId: 2)
 enum TaskStatus {
   @HiveField(0)
-  pending('pending', 'قيد الانتظار', Icons.access_time, Colors.orange),
+  pending('pending', 'Pending', Icons.access_time, Colors.orange),
   
   @HiveField(1)
-  inProgress('inProgress', 'قيد التنفيذ', Icons.autorenew, Colors.blue),
+  inProgress('inProgress', 'In Progress', Icons.autorenew, Colors.blue),
   
   @HiveField(2)
-  completed('completed', 'مكتملة', Icons.check_circle, Colors.green);
+  completed('completed', 'Completed', Icons.check_circle, Colors.green);
 
   final String value;
   final String label;

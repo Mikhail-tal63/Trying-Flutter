@@ -106,3 +106,12 @@ class SetTaskPriorityEvent extends TaskEvent {
   @override
   List<Object> get props => [taskId, serverId ?? '', priority];
 }
+
+class TasksUpdated extends TaskEvent {
+  final List<TaskModel> tasks;
+
+  const TasksUpdated(this.tasks);
+
+  @override
+  List<Object> get props => [tasks];
+}

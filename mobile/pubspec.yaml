@@ -28,14 +28,14 @@ dependencies:
   hive_flutter: ^1.1.0
   sqflite: ^2.0.0
   
-         # للتخزين المحلي
+  # For local storage
   
   flutter_slidable: ^2.0.0 
   # Forms & Validation
   formz: ^0.5.0
   
   # Notifications
-  flutter_local_notifications: ^20.0.0
+  flutter_local_notifications: ^14.0.0
   
   # Connectivity
   connectivity_plus: ^4.0.0
@@ -44,6 +44,7 @@ dependencies:
   intl: ^0.18.0
   
   # UI Enhancements
+  flutter_staggered_animations: ^1.1.1
   flutter_svg: ^2.0.0
   animated_text_kit: ^4.2.0
   shimmer: ^3.0.0
@@ -59,4 +60,4 @@ dev_dependencies:
     sdk: flutter
   flutter_lints: ^3.0.2
   build_runner: ^2.0.0
-  retrofit_generator: ^5.0
+  retrofit_generator: ^5.0.0

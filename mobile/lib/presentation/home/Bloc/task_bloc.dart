@@ -22,9 +22,36 @@ class TaskBloc extends Bloc<TaskEvent, TaskState> {
     on<SearchTasksEvent>(_onSearchTasks);
     on<ClearCompletedEvent>(_onClearCompleted);
     on<SetTaskPriorityEvent>(_onSetTaskPriority);
+    on<TasksUpdated>(_onTasksUpdated);
 
     _startTaskStream();
     _startAutoSync();
+  }
+
+  Future<void> _onTasksUpdated(
+    TasksUpdated event,
+    Emitter<TaskState> emit,
+  ) async {
+    if (state is TaskLoaded) {
+      final currentState = state as TaskLoaded;
+      final filteredTasks = _applyFilters(
+        event.tasks,
+        currentState.currentFilter,
+        currentState.searchQuery,
+      );
+
+      emit(currentState.copyWith(tasks: filteredTasks));
+    }
+  }
+
+  // ... (keep other handlers)
+
+// ...
+
+  void _startTaskStream() {
+    _taskSubscription = taskRepository.getTasksStream().listen((tasks) {
+      add(TasksUpdated(tasks));
+    });
   }
 
   Future<void> _onLoadTasks(
@@ -301,20 +328,7 @@ class TaskBloc extends Bloc<TaskEvent, TaskState> {
     return filteredTasks;
   }
 
-  void _startTaskStream() {
-    _taskSubscription = taskRepository.getTasksStream().listen((tasks) {
-      if (state is TaskLoaded) {
-        final currentState = state as TaskLoaded;
-        final filteredTasks = _applyFilters(
-          tasks,
-          currentState.currentFilter,
-          currentState.searchQuery,
-        );
 
-        emit(currentState.copyWith(tasks: filteredTasks));
-      }
-    });
-  }
 
   void _startAutoSync() {
     _syncTimer = Timer.periodic(const Duration(minutes: 5), (_) {

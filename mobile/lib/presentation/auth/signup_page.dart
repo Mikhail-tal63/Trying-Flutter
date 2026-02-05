@@ -47,10 +47,10 @@ class _SignupPageState extends State<SignupPage> {
 
   String? _validatePasswordMatch(String? value) {
     if (value == null || value.isEmpty) {
-      return 'يرجى تأكيد كلمة المرور';
+      return 'Please confirm your password';
     }
     if (value != _passwordController.text) {
-      return 'كلمتا المرور غير متطابقتين';
+      return 'Passwords do not match';
     }
     return null;
   }
@@ -80,7 +80,7 @@ class _SignupPageState extends State<SignupPage> {
       builder: (context, state) {
         return Scaffold(
           appBar: AppBar(
-            title: const Text('إنشاء حساب جديد'),
+            title: const Text('Create New Account'),
             leading: IconButton(
               icon: const Icon(Icons.arrow_back),
               onPressed: () => Navigator.pop(context),
@@ -108,9 +108,9 @@ class _SignupPageState extends State<SignupPage> {
                       
                       const SizedBox(height: 20),
                       
-                 
+                  
                       const Text(
-                        'إنشاء حساب',
+                        'Create Account',
                         style: TextStyle(
                           fontSize: 28,
                           fontWeight: FontWeight.bold,
@@ -122,7 +122,7 @@ class _SignupPageState extends State<SignupPage> {
                       
        
                       const Text(
-                        'أنشئ حسابك لبدء استخدام تطبيق ToDo',
+                        'Create your account to start using ToDo App',
                         style: TextStyle(
                           fontSize: 16,
                           color: Colors.grey,
@@ -137,8 +137,8 @@ class _SignupPageState extends State<SignupPage> {
                         keyboardType: TextInputType.name,
                         textCapitalization: TextCapitalization.words,
                         decoration: const InputDecoration(
-                          labelText: 'الاسم الكامل',
-                          hintText: 'أدخل اسمك الكامل',
+                          labelText: 'Full Name',
+                          hintText: 'Enter your full name',
                           prefixIcon: Icon(Icons.person_outline),
                           border: OutlineInputBorder(),
                           filled: true,
@@ -146,10 +146,10 @@ class _SignupPageState extends State<SignupPage> {
                         ),
                         validator: (value) {
                           if (value == null || value.isEmpty) {
-                            return 'يرجى إدخال الاسم';
+                            return 'Please enter your name';
                           }
                           if (value.length < 2) {
-                            return 'الاسم يجب أن يكون أكثر من حرفين';
+                            return 'Name must be at least 2 characters';
                           }
                           return null;
                         },
@@ -162,7 +162,7 @@ class _SignupPageState extends State<SignupPage> {
                         controller: _emailController,
                         keyboardType: TextInputType.emailAddress,
                         decoration: const InputDecoration(
-                          labelText: 'البريد الإلكتروني',
+                          labelText: 'Email Address',
                           hintText: 'example@email.com',
                           prefixIcon: Icon(Icons.email_outlined),
                           border: OutlineInputBorder(),
@@ -171,11 +171,11 @@ class _SignupPageState extends State<SignupPage> {
                         ),
                         validator: (value) {
                           if (value == null || value.isEmpty) {
-                            return 'يرجى إدخال البريد الإلكتروني';
+                            return 'Please enter your email';
                           }
                           if (!RegExp(r'^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$')
                               .hasMatch(value)) {
-                            return 'البريد الإلكتروني غير صحيح';
+                            return 'Invalid email address';
                           }
                           return null;
                         },
@@ -188,8 +188,8 @@ class _SignupPageState extends State<SignupPage> {
                         controller: _passwordController,
                         obscureText: _obscurePassword,
                         decoration: InputDecoration(
-                          labelText: 'كلمة المرور',
-                          hintText: 'أدخل كلمة مرور قوية',
+                          labelText: 'Password',
+                          hintText: 'Enter a strong password',
                           prefixIcon: const Icon(Icons.lock_outline),
                           border: const OutlineInputBorder(),
                           filled: true,
@@ -210,10 +210,10 @@ class _SignupPageState extends State<SignupPage> {
                         ),
                         validator: (value) {
                           if (value == null || value.isEmpty) {
-                            return 'يرجى إدخال كلمة المرور';
+                            return 'Please enter a password';
                           }
                           if (value.length < 6) {
-                            return 'كلمة المرور يجب أن تكون 6 أحرف على الأقل';
+                            return 'Password must be at least 6 characters';
                           }
                           return null;
                         },
@@ -226,8 +226,8 @@ class _SignupPageState extends State<SignupPage> {
                         controller: _confirmPasswordController,
                         obscureText: _obscureConfirmPassword,
                         decoration: InputDecoration(
-                          labelText: 'تأكيد كلمة المرور',
-                          hintText: 'أعد إدخال كلمة المرور',
+                          labelText: 'Confirm Password',
+                          hintText: 'Re-enter your password',
                           prefixIcon: const Icon(Icons.lock_reset_outlined),
                           border: const OutlineInputBorder(),
                           filled: true,
@@ -262,7 +262,7 @@ class _SignupPageState extends State<SignupPage> {
                           const SizedBox(width: 8),
                           const Expanded(
                             child: Text(
-                              'استخدم 6 أحرف على الأقل مع مزيج من الحروف والأرقام',
+                              'Use at least 6 characters with a mix of letters and numbers',
                               style: TextStyle(
                                 fontSize: 12,
                                 color: Colors.grey,
@@ -294,7 +294,7 @@ class _SignupPageState extends State<SignupPage> {
                                   ),
                                 )
                               : const Text(
-                                  'إنشاء حساب',
+                                  'Create Account',
                                   style: TextStyle(
                                     fontSize: 18,
                                     fontWeight: FontWeight.w600,
@@ -310,7 +310,7 @@ class _SignupPageState extends State<SignupPage> {
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           const Text(
-                            'هل لديك حساب بالفعل؟',
+                            'Already have an account?',
                             style: TextStyle(
                               color: Colors.grey,
                             ),
@@ -325,7 +325,7 @@ class _SignupPageState extends State<SignupPage> {
                               );
                             },
                             child: const Text(
-                              'سجّل الدخول',
+                              'Login',
                               style: TextStyle(
                                 fontWeight: FontWeight.bold,
                               ),
@@ -348,7 +348,7 @@ class _SignupPageState extends State<SignupPage> {
                           Padding(
                             padding: EdgeInsets.symmetric(horizontal: 16),
                             child: Text(
-                              'أو',
+                              'OR',
                               style: TextStyle(color: Colors.grey),
                             ),
                           ),
