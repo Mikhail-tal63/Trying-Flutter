@@ -4,7 +4,6 @@ import 'package:ToDo/data/repositories/task_repository.dart';
 import 'package:ToDo/presentation/home/Bloc/task_event.dart';
 import 'package:ToDo/presentation/home/Bloc/task_state.dart';
 import 'package:bloc/bloc.dart';
-import 'package:equatable/equatable.dart';
 
 class TaskBloc extends Bloc<TaskEvent, TaskState> {
   final TaskRepository taskRepository;
@@ -205,7 +204,6 @@ class TaskBloc extends Bloc<TaskEvent, TaskState> {
     try {
       await taskRepository.syncTasks();
       final tasks = await taskRepository.getTasks();
-      final stats = await taskRepository.getTaskStats();
 
       emit(TaskSyncComplete(syncedCount: tasks.length));
       

@@ -293,7 +293,7 @@ class _AddTaskBottomSheetState extends State<AddTaskBottomSheet> {
                               onPressed: () => setState(() => _selectedPriority = priority),
                               style: OutlinedButton.styleFrom(
                                 backgroundColor: isSelected
-                                    ? priority.color.withOpacity(0.1)
+                                    ? priority.color.withValues(alpha: 0.1)
                                     : Colors.transparent,
                                 side: BorderSide(
                                   color: isSelected

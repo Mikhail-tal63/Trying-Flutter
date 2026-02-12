@@ -11,6 +11,7 @@ dependencies:
   
   # State Management
   flutter_bloc: ^8.1.0
+  bloc: ^8.1.0
   equatable: ^2.0.5 
   
   # Dependency Injection
@@ -30,12 +31,12 @@ dependencies:
   
   # For local storage
   
-  flutter_slidable: ^2.0.0 
+  flutter_slidable: ^3.0.0 
   # Forms & Validation
   formz: ^0.5.0
   
   # Notifications
-  flutter_local_notifications: ^14.0.0
+  flutter_local_notifications: ^17.0.0
   
   # Connectivity
   connectivity_plus: ^4.0.0
@@ -60,4 +61,5 @@ dev_dependencies:
     sdk: flutter
   flutter_lints: ^3.0.2
   build_runner: ^2.0.0
-  retrofit_generator: ^5.0.0
+  retrofit_generator: ^5.0.0+1
+  hive_generator: ^2.0.0

@@ -1,0 +1,16 @@
+Analyzing mobile...                                             
+
+   info - Don't invoke 'print' in production code - lib\data\repositories\auth_repository.dart:59:7 - avoid_print
+   info - Don't invoke 'print' in production code - lib\data\repositories\task_repository.dart:85:7 - avoid_print
+   info - Don't invoke 'print' in production code - lib\data\repositories\task_repository.dart:105:7 - avoid_print
+   info - Use the end-of-line form ('///') for doc comments - lib\data\repositories\task_repository.dart:109:1 - slash_for_doc_comments
+   info - Use 'const' with the constructor to improve performance - lib\presentation\auth\signup_page.dart:340:23 - prefer_const_constructors
+warning - Unused import: 'package:equatable/equatable.dart' - lib\presentation\home\Bloc\task_bloc.dart:7:8 - unused_import
+warning - The value of the local variable 'stats' isn't used - lib\presentation\home\Bloc\task_bloc.dart:208:13 - unused_local_variable
+   info - Use 'const' with the constructor to improve performance - lib\presentation\home\Bloc\task_bloc.dart:213:11 - prefer_const_constructors
+   info - Use 'const' with the constructor to improve performance - lib\presentation\home\home_page.dart:33:34 - prefer_const_constructors
+   info - Use 'const' with the constructor to improve performance - lib\presentation\home\home_page.dart:119:50 - prefer_const_constructors
+   info - Use 'const' with the constructor to improve performance - lib\presentation\home\home_page.dart:137:36 - prefer_const_constructors
+   info - The private field _selectedTags could be 'final' - lib\presentation\home\widgets\add_task_bottom_sheet.dart:27:16 - prefer_final_fields
+   info - The package name 'ToDo' isn't a lower_case_with_underscores identifier - pubspec.yaml:1:7 - package_names
+
