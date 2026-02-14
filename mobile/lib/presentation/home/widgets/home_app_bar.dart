@@ -23,12 +23,12 @@ class HomeAppBar extends StatelessWidget implements PreferredSizeWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  'مرحباً ${state.user.name}',
+                  'Hello ${state.user.name}',
                   style: const TextStyle(fontSize: 16),
                 ),
                 const SizedBox(height: 2),
                 Text(
-                  'مهامك اليومية',
+                  'Your daily tasks',
                   style: TextStyle(
                     fontSize: 12,
                     color: Colors.grey[600],
@@ -37,7 +37,7 @@ class HomeAppBar extends StatelessWidget implements PreferredSizeWidget {
               ],
             );
           }
-          return const Text('المهام');
+          return const Text('Tasks');
         },
       ),
       actions: [
@@ -73,7 +73,7 @@ class HomeAppBar extends StatelessWidget implements PreferredSizeWidget {
               onPressed: () {
                 context.read<TaskBloc>().add( SyncTasksEvent());
               },
-              tooltip: 'مزامنة المهام',
+              tooltip: 'Sync Tasks',
             );
           },
         ),
@@ -95,7 +95,7 @@ class HomeAppBar extends StatelessWidget implements PreferredSizeWidget {
                 children: [
                   Icon(Icons.clear_all, size: 20),
                   SizedBox(width: 8),
-                  Text('حذف المكتملة'),
+                  Text('Clear Completed'),
                 ],
               ),
             ),
@@ -107,7 +107,7 @@ class HomeAppBar extends StatelessWidget implements PreferredSizeWidget {
                   Icon(Icons.logout, size: 20, color: Colors.red),
                   SizedBox(width: 8),
                   Text(
-                    'تسجيل الخروج',
+                    'Logout',
                     style: TextStyle(color: Colors.red),
                   ),
                 ],

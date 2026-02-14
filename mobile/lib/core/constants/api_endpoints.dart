@@ -1,6 +1,12 @@
+import 'dart:io';
+
 class ApiEndpoints {
-  static const String baseUrl = 'http://192.168.0.5:5000/api';
-  
+  static String get baseUrl {
+    // Physical device: use your computer's LAN IP
+    // Emulator: would use 10.0.2.2
+    return 'http://192.168.0.9:5000/api';
+  }
+
   // Authentication
   static const String login = '/auth/login';
   static const String register = '/auth/register';

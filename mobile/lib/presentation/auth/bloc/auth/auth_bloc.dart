@@ -36,8 +36,10 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
       log('✅ Login successful for user: ${user.email}');
       
     } catch (e, stackTrace) {
-
       log('❌ Login error: $e', error: e, stackTrace: stackTrace);
+      // Temporary: print to console to ensure visibility
+      print('LOGIN ERROR DETAILS: $e');
+      print('STACK TRACE: $stackTrace');
       
       final errorMessage = _getUserFriendlyErrorMessage(e);
       emit(AuthError(message: errorMessage));

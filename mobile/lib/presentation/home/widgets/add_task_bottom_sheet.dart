@@ -195,7 +195,7 @@ class _AddTaskBottomSheetState extends State<AddTaskBottomSheet> {
                     ),
                     const SizedBox(width: 12),
                     Text(
-                      'إضافة مهمة جديدة',
+                      'Add New Task',
                       style: theme.textTheme.titleLarge?.copyWith(
                         fontWeight: FontWeight.bold,
                       ),
@@ -209,14 +209,14 @@ class _AddTaskBottomSheetState extends State<AddTaskBottomSheet> {
                 TextFormField(
                   controller: _titleController,
                   decoration: const InputDecoration(
-                    labelText: 'عنوان المهمة *',
-                    hintText: 'أدخل عنوان المهمة',
+                    labelText: 'Task Title *',
+                    hintText: 'Enter task title',
                     border: OutlineInputBorder(),
                     prefixIcon: Icon(Icons.title),
                   ),
                   validator: (value) {
                     if (value == null || value.trim().isEmpty) {
-                      return 'الرجاء إدخال عنوان المهمة';
+                      return 'Please enter task title';
                     }
                     return null;
                   },
@@ -229,8 +229,8 @@ class _AddTaskBottomSheetState extends State<AddTaskBottomSheet> {
                   controller: _descriptionController,
                   maxLines: 3,
                   decoration: const InputDecoration(
-                    labelText: 'الوصف',
-                    hintText: 'أدخل وصف المهمة (اختياري)',
+                    labelText: 'Description',
+                    hintText: 'Enter task description (optional)',
                     border: OutlineInputBorder(),
                     alignLabelWithHint: true,
                     prefixIcon: Icon(Icons.description),
@@ -247,7 +247,7 @@ class _AddTaskBottomSheetState extends State<AddTaskBottomSheet> {
                         readOnly: true,
                         onTap: () => _selectDate(context),
                         decoration: const InputDecoration(
-                          labelText: 'التاريخ',
+                          labelText: 'Date',
                           border: OutlineInputBorder(),
                           prefixIcon: Icon(Icons.calendar_today),
                         ),
@@ -260,7 +260,7 @@ class _AddTaskBottomSheetState extends State<AddTaskBottomSheet> {
                         readOnly: true,
                         onTap: () => _selectTime(context),
                         decoration: const InputDecoration(
-                          labelText: 'الوقت',
+                          labelText: 'Time',
                           border: OutlineInputBorder(),
                           prefixIcon: Icon(Icons.access_time),
                         ),
@@ -276,7 +276,7 @@ class _AddTaskBottomSheetState extends State<AddTaskBottomSheet> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      'الأولوية',
+                      'Priority',
                       style: theme.textTheme.labelMedium?.copyWith(
                         color: Colors.grey[700],
                       ),
@@ -288,7 +288,7 @@ class _AddTaskBottomSheetState extends State<AddTaskBottomSheet> {
                         
                         return Expanded(
                           child: Padding(
-                            padding: const EdgeInsets.symmetric(horizontal: 4),
+                            padding: const EdgeInsets.symmetric(horizontal: 2),
                             child: OutlinedButton(
                               onPressed: () => setState(() => _selectedPriority = priority),
                               style: OutlinedButton.styleFrom(
@@ -341,7 +341,7 @@ class _AddTaskBottomSheetState extends State<AddTaskBottomSheet> {
                     Row(
                       children: [
                         Text(
-                          'الوسوم',
+                          'Tags',
                           style: theme.textTheme.labelMedium?.copyWith(
                             color: Colors.grey[700],
                           ),
@@ -386,7 +386,7 @@ class _AddTaskBottomSheetState extends State<AddTaskBottomSheet> {
                             borderRadius: BorderRadius.circular(12),
                           ),
                         ),
-                        child: const Text('إلغاء'),
+                        child: const Text('Cancel'),
                       ),
                     ),
                     const SizedBox(width: 12),
@@ -400,7 +400,7 @@ class _AddTaskBottomSheetState extends State<AddTaskBottomSheet> {
                             borderRadius: BorderRadius.circular(12),
                           ),
                         ),
-                        child: const Text('إضافة المهمة'),
+                        child: const Text('Add Task'),
                       ),
                     ),
                   ],

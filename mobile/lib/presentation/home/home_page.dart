@@ -180,7 +180,7 @@ floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
 Widget _buildEmptyState() {
 return SingleChildScrollView(
   physics: const AlwaysScrollableScrollPhysics(),
-child: Padding(padding: const EdgeInsetsGeometry.all(32.0),
+child: Padding(padding: const EdgeInsets.all(32.0),
 child: Column(
   mainAxisAlignment: MainAxisAlignment.center,
   children: [

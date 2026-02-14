@@ -1,0 +1,34 @@
+﻿Analyzing mobile...                                             
+
+   info - Don't invoke 'print' in production code - lib\data\repositories\auth_repository.dart:59:7 - avoid_print
+   info - Don't invoke 'print' in production code - lib\data\repositories\task_repository.dart:85:7 - avoid_print
+   info - Don't invoke 'print' in production code - lib\data\repositories\task_repository.dart:105:7 - avoid_print
+   info - Use the end-of-line form ('///') for doc comments - lib\data\repositories\task_repository.dart:109:1 - slash_for_doc_comments
+   info - Use 'const' with the constructor to improve performance - lib\presentation\auth\signup_page.dart:340:23 - prefer_const_constructors
+   info - Use 'const' with the constructor to improve performance - lib\presentation\home\Bloc\task_bloc.dart:211:11 - prefer_const_constructors
+   info - Use 'const' with the constructor to improve performance - lib\presentation\home\home_page.dart:33:34 - prefer_const_constructors
+   info - Use 'const' with the constructor to improve performance - lib\presentation\home\home_page.dart:119:50 - prefer_const_constructors
+   info - Use 'const' with the constructor to improve performance - lib\presentation\home\home_page.dart:137:36 - prefer_const_constructors
+   info - The private field _selectedTags could be 'final' - lib\presentation\home\widgets\add_task_bottom_sheet.dart:27:16 - prefer_final_fields
+   info - The package name 'ToDo' isn't a lower_case_with_underscores identifier - pubspec.yaml:1:7 - package_names
+  error - The named parameter 'taskRepository' is required, but there's no corresponding argument - test\widget_test.dart:25:29 - missing_required_argument
+
+flutter : 12 issues 
+found. (ran in 71.2s)
+At line:1 char:1
++ flutter analyze 
+2>&1 | Out-File 
+-Encoding utf8 
+analysis_result.txt; 
+t ...
++ ~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo    
+          : NotSpeci  
+  fied: (12 issues    
+ found. (ran in 71    
+.2s):String) [],     
+RemoteException
+    + FullyQualifiedE 
+   rrorId : NativeCo  
+  mmandError
+ 
