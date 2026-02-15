@@ -114,7 +114,7 @@ class HomeAppBar extends StatelessWidget implements PreferredSizeWidget {
               ),
             ),
           ],
-        ),
+        ),//nigga
       ],
       elevation: 2,
       shadowColor: Colors.black.withValues(alpha: 0.1),
